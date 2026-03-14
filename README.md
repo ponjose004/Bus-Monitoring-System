@@ -1,81 +1,114 @@
 # 🚌 Bus Number Detection System
 
-An automated system that detects bus numbers from CCTV footage using **YOLOv8** object detection and **Tesseract OCR**.
+> Automated bus monitoring using YOLOv8 object detection + Tesseract OCR.  
+> Detects bus numbers from CCTV footage and logs arrival/departure times to a live web dashboard.
 
-## How It Works
+---
 
-1. YOLO model detects the bus number board in each video frame
-2. When a bus crosses a virtual line, frames are cropped and saved
-3. Tesseract OCR reads the number from 5 cropped frames
-4. The most common number (mode) is taken as the confirmed bus number
-5. In/Out times and license plate info are logged to MySQL
+## 🔴 Live Dashboard
+👉 **[bus-monitor.up.railway.app](https://bus-monitor.up.railway.app)**
+*(replace with your actual Railway URL after deploying)*
 
-## Project Structure
+## ▶️ Run Detection (Anyone Can Run This!)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_GITHUB_USERNAME/bus-monitoring-system/blob/main/bus_detection_colab.ipynb)
+
+*(replace YOUR_GITHUB_USERNAME with your actual GitHub username)*
+
+---
+
+## 💡 How It Works
+
+```
+Anyone clicks "Open in Colab"
+          ↓
+Runs the notebook (video auto-downloads from Google Drive)
+          ↓
+YOLOv8 detects bus number boards frame by frame
+          ↓
+Tesseract OCR reads the bus number from cropped frames
+          ↓
+Results saved to Railway MySQL database (online)
+          ↓
+Live dashboard updates automatically — visible to everyone
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Object Detection | YOLOv8 (Ultralytics) |
+| OCR | Tesseract |
+| Video Processing | OpenCV |
+| Database | MySQL (Railway) |
+| Dashboard | PHP + HTML/CSS |
+| Hosting | Railway.app (free) |
+| Notebook | Google Colab (free) |
+
+---
+
+## 📁 Project Structure
 
 ```
 bus-monitoring-system/
-├── bus_detection.ipynb     ← Main notebook (run on Google Colab)
-├── best.pt                 ← YOLOv8 trained model
-├── dashboard/
-│   ├── index.php           ← Web dashboard (PHP + MySQL)
-│   └── style.css
+├── bus_detection_colab.ipynb  ← Open in Colab and run!
+├── best.pt                    ← Trained YOLOv8 model
+├── nixpacks.toml              ← Railway PHP deployment config
+├── public/
+│   └── index.php              ← Live web dashboard
 ├── database/
-│   └── bus.sql             ← MySQL schema + sample data
+│   └── demo_data.sql          ← Sample data to pre-populate dashboard
 └── README.md
 ```
 
-## ▶️ Running on Google Colab
+---
 
-### 1. Upload the test video to Google Drive
+## 🚀 How to Run
 
-- Go to [drive.google.com](https://drive.google.com)
-- Upload `last.mp4` (the test video)
-- Right-click → **Share** → **Anyone with the link**
-- Copy the **File ID** from the share URL:
-  - URL: `https://drive.google.com/file/d/`**`1aBcXYZ...`**`/view`
+### Option 1 — Run on Google Colab (Recommended)
+1. Click the **"Open in Colab"** badge above
+2. Upload `best.pt` when prompted
+3. Click **Runtime → Run All**
+4. Open the [Live Dashboard](https://bus-monitor.up.railway.app) to see results!
 
-> **Test Video:** *(paste your Google Drive share link here after uploading)*
-
-### 2. Open the notebook in Colab
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/bus-monitoring-system/blob/main/bus_detection.ipynb)
-
-*(Replace `YOUR_USERNAME` with your GitHub username after uploading)*
-
-### 3. Configure and run
-
-In the **Configuration** cell, set:
-```python
-GOOGLE_DRIVE_FILE_ID = 'paste-your-file-id-here'
+### Option 2 — Run Locally
+```bash
+pip install ultralytics pytesseract opencv-python mysql-connector-python
+python run_detection.py
 ```
 
-Then **Run All** cells (Runtime → Run All).
+---
 
-## 🖥️ Dashboard Setup (Local)
+## 🌐 Deploy Your Own Dashboard (Railway — Free)
 
-Requires: PHP, MySQL, Apache/XAMPP
+1. Fork this repo
+2. Go to [railway.app](https://railway.app) → New Project → Deploy from GitHub
+3. Add a MySQL database service
+4. Import `database/demo_data.sql` in the Query tab
+5. Railway auto-detects `nixpacks.toml` → PHP deploys automatically
+6. Click **Settings → Generate Domain** → get your public URL ✅
 
-1. Import `database/bus.sql` into MySQL
-2. Copy `dashboard/` folder into your web server root (e.g. `htdocs/`)
-3. Open `http://localhost/dashboard/`
+---
 
-## Bus Number → License Plate Map
+## 📊 Dashboard Features
 
-| Bus Number | License Plate  |
-|------------|----------------|
-| 5          | TN 48 C45698   |
-| 6          | TN 42 C12534   |
-| 7          | TN 11 C12345   |
-| 9          | TN 12 A87546   |
-| 13         | TN 10 C85236   |
-| 14         | TN 72 C12345   |
-| 15         | TN 01 C11111   |
-| 19         | TN 58 C78541   |
+- 🟢 Live bus detection log (auto-refreshes every 10 seconds)
+- 🔢 Total detections, today's count, currently inside
+- 🚌 Bus number, license plate, in/out time per entry
+- 🏷️ Status badge — Inside / Departed
 
-## Dependencies
+---
 
-- [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)
-- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
-- OpenCV
-- MySQL Connector (Python)
-- gdown
+## 🗺️ Bus Number → License Plate Map
+
+| Bus | License Plate |
+|-----|--------------|
+| 5   | TN 84 C35805 |
+| 6   | TN 84 C85806 |
+| 7   | TN 84 C25697 |
+| 9   | TN 84 A55709 |
+| 13  | TN 84 C35913 |
+| 14  | TN 84 C15514 |
+| 15  | TN 84 C75915 |
+| 19  | TN 84 C35619 |
