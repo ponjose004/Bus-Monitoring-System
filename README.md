@@ -6,13 +6,11 @@
 ---
 
 ## 🔴 Live Dashboard
-👉 **[bus-monitor.up.railway.app](https://bus-monitor.up.railway.app)**
+👉 **[bus-monitor.up.railway.app]([https://bus-monitor.up.railway.app](https://bus-monitoring-system-production.up.railway.app/))**
 *(replace with your actual Railway URL after deploying)*
 
 ## ▶️ Run Detection (Anyone Can Run This!)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_GITHUB_USERNAME/bus-monitoring-system/blob/main/bus_detection_colab.ipynb)
-
-*(replace YOUR_GITHUB_USERNAME with your actual GitHub username)*
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ponjose004/Bus-monitoring-system/blob/main/bus_detection.ipynb)
 
 ---
 
@@ -97,18 +95,3 @@ python run_detection.py
 - 🔢 Total detections, today's count, currently inside
 - 🚌 Bus number, license plate, in/out time per entry
 - 🏷️ Status badge — Inside / Departed
-
----
-
-## 🗺️ Bus Number → License Plate Map
-
-| Bus | License Plate |
-|-----|--------------|
-| 5   | TN 84 C35805 |
-| 6   | TN 84 C85806 |
-| 7   | TN 84 C25697 |
-| 9   | TN 84 A55709 |
-| 13  | TN 84 C35913 |
-| 14  | TN 84 C15514 |
-| 15  | TN 84 C75915 |
-| 19  | TN 84 C35619 |
