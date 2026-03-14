@@ -6,7 +6,7 @@
 ---
 
 ## 🔴 Live Dashboard
-👉 **[bus-monitor.up.railway.app]([https://bus-monitor.up.railway.app](https://bus-monitoring-system-production.up.railway.app/))**
+👉 **[bus-monitor.up.railway.app]([https://bus-monitor.up.railway.app](https://bus-monitoring-system-production.up.railway.app/)])**
 *(replace with your actual Railway URL after deploying)*
 
 ## ▶️ Run Detection (Anyone Can Run This!)
