@@ -1,0 +1,14 @@
+# Videos — upload to Google Drive instead
+*.mp4
+*.avi
+*.mov
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+temp_images/
+
+# OS
+.DS_Store
+Thumbs.db
