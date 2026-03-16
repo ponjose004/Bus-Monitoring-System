@@ -6,7 +6,7 @@
 ---
 
 # 🔴 Live Dashboard
-👉 *[bus-monitoring-system-production.up.railway.app](https://bus-monitoring-system-production.up.railway.app/)*
+### 👉 [bus-monitoring-system-production.up.railway.app](https://bus-monitoring-system-production.up.railway.app/)
 
 ## ▶️ Run Detection (Anyone Can Run This!)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ponjose004/Bus-monitoring-system/blob/main/bus_detection_colab.ipynb)
